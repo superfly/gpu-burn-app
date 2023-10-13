@@ -1,0 +1,3 @@
+app = "gpu-stress-test"
+primary_region = "ord"
+host_dedication_id = "fly_gpus_stress_test"
