@@ -6,13 +6,13 @@ ARG CUDA=12-2
 ENV CUDA=${CUDA}
 
 FROM base as builder
-RUN apt install -y --no-install-recommends git cmake \
+RUN apt update -q && apt install -y --no-install-recommends git cmake \
         cuda-nvcc-${CUDA} libcublas-dev-${CUDA}
 RUN git clone --depth=1 https://github.com/wilicc/gpu-burn /build
 RUN cd /build && make
 
 FROM base as runner
-RUN apt install -y --no-install-recommends libcublas-${CUDA}
+RUN apt update -q && apt install -y --no-install-recommends libcublas-${CUDA}
 COPY --from=builder /build/gpu_burn /build/compare.ptx /app/
 WORKDIR /app
 CMD ["./gpu_burn", "-tc", "-d", "300"]
