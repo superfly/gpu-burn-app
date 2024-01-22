@@ -2,8 +2,8 @@ app = "gpu-stress-test"
 primary_region = "ord"
 host_dedication_id = "fly_gpus_stress_test"
 
-[build]
-image = "dangra/gpu-burn"
+#[build]
+#image = "dangra/gpu-burn"
 
 [processes]
 40gb = ""
@@ -12,12 +12,15 @@ l40s = ""
 
 [[vm]]
 size = "a100-80gb"
+cpus = 16
 processes = ["80gb"]
 
 [[vm]]
 size = "a100-40gb"
+cpus = 16
 processes = ["40gb"]
 
 [[vm]]
 size = "l40s"
+cpus = 16
 processes = ["l40s"]

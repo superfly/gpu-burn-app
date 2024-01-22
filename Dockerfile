@@ -12,7 +12,8 @@ RUN git clone --depth=1 https://github.com/wilicc/gpu-burn /build
 RUN cd /build && make
 
 FROM base as runner
-RUN apt update -q && apt install -y --no-install-recommends libcublas-${CUDA}
+RUN apt update -q && apt install -y --no-install-recommends libcublas-${CUDA} stress
 COPY --from=builder /build/gpu_burn /build/compare.ptx /app/
+COPY start.sh /app
 WORKDIR /app
-CMD ["./gpu_burn", "-tc", "900"]
+CMD ["./start.sh"]
