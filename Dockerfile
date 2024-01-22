@@ -15,4 +15,4 @@ FROM base as runner
 RUN apt update -q && apt install -y --no-install-recommends libcublas-${CUDA}
 COPY --from=builder /build/gpu_burn /build/compare.ptx /app/
 WORKDIR /app
-CMD ["./gpu_burn", "-tc", "-d", "300"]
+CMD ["./gpu_burn", "-tc", "900"]
