@@ -9,6 +9,11 @@ host_dedication_id = "fly_gpus_stress_test"
 40gb = ""
 80gb = ""
 l40s = ""
+a10  = ""
+
+[[restart]]
+policy = 'always'
+processes = ['40gb', '80gb', 'l40s', 'a10']
 
 [[vm]]
 size = "a100-80gb"
@@ -24,3 +29,8 @@ processes = ["40gb"]
 size = "l40s"
 cpus = 16
 processes = ["l40s"]
+
+[[vm]]
+size = "a10"
+cpus = 16
+processes = ["a10"]
